@@ -44,15 +44,21 @@ List<User> users=new ArrayList<>();
 	}
 	@RequestMapping("/SaveUser")
 	public ModelAndView saveStudent(@ModelAttribute User user ,  HttpServletResponse response) {
-		ModelAndView modelAndView = new ModelAndView("UserVerification.jsp");
+	int id1=user.getId();
+	System.out.println(user.getName());
 		user.setPayment("unapproved");
+		System.out.println(id1);
 		User user2=userService.saveUser(user);
+		
+		
 		users.add(user2);
 		int id=user2.getId();
 		 Cookie idCookie = new Cookie("userId", String.valueOf(id));
 		 response.addCookie(idCookie);
 		List<Branch> branchs=brachService.viewAllBranchs();
+		ModelAndView modelAndView = new ModelAndView("UserVerification.jsp");
 		modelAndView.addObject("branch", branchs);
+		
 		modelAndView.addObject("saved", user2.getName() + " saved successfully");
 		return modelAndView;
 	}

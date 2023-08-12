@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ page isELIgnored="false" %>
     
 <!DOCTYPE html>
 <html>
@@ -67,7 +68,7 @@
             <th>User_Password</th>
             <th>User_Branch</th>
             <th>User_Payment</th>
-            <th>User_EventNames</th>
+           
             <th>Delete</th>
         </tr>
         <c:forEach var="user" items="${user}">
@@ -78,7 +79,7 @@
                 <td>${user.getUser_password()}</td>
                 <td>${user.getBranch()}</td>
                 <td>${user.getPayment()}</td>
-                <td>${user.getEventNames()}</td>
+               
                 <td><a class="btn" href="deleteUser?id=${user.getId()}">Delete</a></td>
             </tr>
         </c:forEach>

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <title>Welcome to Fit Application</title>
 <style>
     body {
@@ -59,11 +61,11 @@
 </head>
 <body>
     <h1>Save User!</h1>
-    <form action="SaveUser" modelAttribute="user">
-        Name: <input type="text" path="name"><br><br>
-        Email: <input type="text" path="email"><br><br>
-        Password: <input type="password" path="user_password"><br><br>
+ <form:form action="SaveUser" method="post" modelAttribute="user">
+        Name: <form:input path="name" /><br><br>
+        Email: <form:input path="email" /><br><br>
+        Password: <form:password path="user_password" /><br><br>
         <button type="submit">Save</button>
-    </form>
+    </form:form>
 </body>
 </html>

@@ -249,20 +249,32 @@ List<User> users=userService.viewAllUsers();
 		System.out.println(user.getEmail());
 		System.out.println(user.getPayment());
 		System.out.println(user.getUser_password());
+		System.out.println(user.getBranch());
+		System.out.println(user.getCharges());
+		System.out.println(user.getEventNames());
+		List<EventName> eventNames=user.getEventNames();
+		for (EventName eventName : eventNames) {
+			System.out.println(eventName);
+		}
+		
 		al.add(user.getId());
 		al.add(user.getName());
 		System.out.println("UserViewById details");
 //		User user2=userService.updateUserById(id, user);
 		ModelAndView modelAndView = new ModelAndView("UserDetails.jsp");
-		modelAndView.addObject("user", al);
+		modelAndView.addObject("user", user);
 		
 		return modelAndView;
 	}
 	 @PostMapping("/makePayment")
-	    public ModelAndView makePayment(@RequestParam int amount, @ModelAttribute User user,@CookieValue(value = "User_Id", defaultValue = "") String userId) {
-		 int id=Integer.parseInt(userId);
+	 public ModelAndView makePayment(@RequestParam String amount, @ModelAttribute User user, @CookieValue(value = "User_Id", defaultValue = "") String userId) {
+		    int id = Integer.parseInt(userId);
+		  
+		    int paymentAmount = Integer.parseInt(amount);
 	  User user2=userService.getUserById(id);
-	  if(user2.getCharges()==amount) {
+	  
+	  if(user2.getCharges()==paymentAmount) {
+		  
 		  user2.setPayment("paid");
 		  User user3=userService.updateUserById(id, user2);
 
